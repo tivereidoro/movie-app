@@ -1,30 +1,33 @@
 import cors from "cors";
 import dotenv from "dotenv";
-import express, { Request, Response } from "express";
+import express from "express";
 
+// import connectDB from './config/db.js';
+// import movieRoutes from './routes/movieRoutes.js';
 // import dbConnect from './config/db';
 // import movieRoutes from './routes/movieRoutes';
 // import authRoutes from './routes/authRoutes';
 
 // Initialisations
 dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Connect to Database
-// dbConnect();
+// connectDB();
 
 // Middleware
-app.use(express.json());
 app.use(
   cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true,
   })
 );
+app.use(express.json());
 
 // API Routes
-app.get("/api/health", (req: Request, res: Response) => {
+app.get("/api/health", (req, res) => {
   res
     .status(200)
     .json({ status: "UP", message: "Backend is healthy and running!" });
