@@ -16,7 +16,6 @@ router.get("/trending", async (req, res) => {
   }
 });
 
-// We'll use these later
 router.get("/:id/similar", async (req, res) => {
   try {
     const movies = await getSimilarMovies(req.params.id);

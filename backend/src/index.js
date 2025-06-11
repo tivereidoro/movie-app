@@ -1,21 +1,17 @@
+import authRoutes from "./routes/authRoutes.js";
+import connectDB from "./config/dbConfig.js";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
-
-// import connectDB from './config/db.js';
-// import movieRoutes from './routes/movieRoutes.js';
-// import dbConnect from './config/db';
-// import movieRoutes from './routes/movieRoutes';
-// import authRoutes from './routes/authRoutes';
+import movieRoutes from "./routes/movieRoutes.js";
 
 // Initialisations
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 8080;
 
 // Connect to Database
-// connectDB();
+connectDB();
 
 // Middleware
 app.use(
@@ -34,9 +30,9 @@ app.get("/api/health", (req, res) => {
 });
 
 // Use Routers
-// app.use("/api/movies", movieRoutes);
-// app.use("/api/auth", authRoutes);
+app.use("/api/movies", movieRoutes);
+app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
-  console.log(`⌗ Server running on http://localhost:${PORT}`);
+  console.log(`\n⌗ Server running on http://localhost:${PORT}`);
 });
